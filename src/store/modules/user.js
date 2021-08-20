@@ -2,4 +2,16 @@ const state = () => ({
 
 })
 
-export default { state, namespace: true }
+const getters = {
+
+}
+
+const mutations = {
+
+}
+
+const actions = {
+
+}
+
+export default { state, mutations, actions, getters, namespace: true }

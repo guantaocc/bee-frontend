@@ -11,7 +11,7 @@ const contentType = "application/json;charset=UTF-8"
  * 将要重构的request 方法
  */
 
-const baseURL = "http://127.0.0.1:8080"
+const baseURL = "http://127.0.0.1:7000"
 
 const instance  = axios.create({
   baseURL,
