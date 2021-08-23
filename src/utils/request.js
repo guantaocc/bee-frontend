@@ -1,29 +1,31 @@
-import axios from "axios"
+import axios from 'axios'
 import store from '@/store'
-import { Message } from "element-ui"
+import { Message } from 'element-ui'
+
+import { settings } from '@/config/settings'
 
 import qs from 'qs'
 
 const requestTimeout = 5000
-const contentType = "application/json;charset=UTF-8"
+const contentType = 'application/json;charset=UTF-8'
 
 /**
  * 将要重构的request 方法
  */
 
-const baseURL = "http://127.0.0.1:7000"
+const baseURL = settings.accessurl
 
-const instance  = axios.create({
+const instance = axios.create({
   baseURL,
   timeout: requestTimeout,
   headers: {
-    'Content-Type': contentType
-  }
+    'Content-Type': contentType,
+  },
 })
 
-function handleCode(code, msg){
-  switch (code){
-    case 401: 
+function handleCode(code, msg) {
+  switch (code) {
+    case 401:
       Message.error(msg || `验证失败${code}`)
       break
     case 400:
@@ -41,13 +43,17 @@ function handleCode(code, msg){
 instance.interceptors.request.use(
   (config) => {
     // 过滤登录相关token
-    if(config.url.indexOf("login") == -1){
-      if (store.state.token){
-        config.headers['Authorization'] = "Token " + store.state.token
+    if (config.url.indexOf('login') == -1) {
+      if (store.state.token) {
+        config.headers['Authorization'] = 'Token ' + store.state.token
       }
     }
     // x-www-form-urlencoded
-    if(config.data && config.headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8'){
+    if (
+      config.data &&
+      config.headers['Content-Type'] ===
+        'application/x-www-form-urlencoded;charset=UTF-8'
+    ) {
       config.data = qs.stringify(config.data)
     }
     return config
@@ -61,7 +67,7 @@ instance.interceptors.request.use(
 // 相应拦截器
 instance.interceptors.response.use(
   (response) => {
-    const {config, data} = response
+    const { config, data } = response
     // 如果 code不是 0， 则显示msg错误
     // 正确返回相应的数据
     // { code: 0, data: [], msg: '操作成功' }
@@ -70,15 +76,15 @@ instance.interceptors.response.use(
   (error) => {
     // 如果返回错误
     const { response, message } = error
-    if(error.response && error.response.data){
-      const {status, data} = response
+    if (error.response && error.response.data) {
+      const { status, data } = response
       // 处理状态码 404 401 400 500 等
       handleCode(status, data.msg || message)
       return Promise.reject(error)
-    }else {
+    } else {
       // error is not xhr error
       let { message } = error
-      if(message === 'Network Error'){
+      if (message === 'Network Error') {
         message = '后端接口连接异常'
       }
       if (message.includes('timeout')) {
@@ -94,6 +100,5 @@ instance.interceptors.response.use(
     }
   }
 )
-
 
 export default instance

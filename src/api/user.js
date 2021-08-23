@@ -5,12 +5,18 @@ export const login = (data) => {
     url: '/api/admin/login',
     method: 'post',
     headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
+      'Content-Type': 'application/json;charset=UTF-8',
     },
-    data
+    data,
   })
 }
 
-export const logout = () => {
-  
+export const getRoles = (data) => {
+  return request({
+    url: '/api/admin/roles',
+    method: 'get',
+    data,
+  })
 }
+
+export const logout = () => {}

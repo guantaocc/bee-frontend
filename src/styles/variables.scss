@@ -1,0 +1,52 @@
+// color primary
+$c-type-primary: #2979ff;
+$c-type-primary-light: #ecf5ff;
+$c-type-primary-disabled: #a0cfff;
+$c-type-primary-dark: #2b85e4;
+
+// color
+$c-type-warning: #ff9900;
+$c-type-warning-disabled: #fcbd71;
+$c-type-warning-dark: #f29100;
+$c-type-warning-light: #fdf6ec;
+
+$c-type-success: #19be6b;
+$c-type-success-disabled: #71d5a1;
+$c-type-success-dark: #18b566;
+$c-type-success-light: #dbf1e1;
+
+$c-type-error: #fa3534;
+$c-type-error-disabled: #fab6b6;
+$c-type-error-dark: #dd6161;
+$c-type-error-light: #fef0f0;
+
+$c-type-info: #909399;
+$c-type-info-disabled: #c8c9cc;
+$c-type-info-dark: #82848a;
+$c-type-info-light: #f4f4f5;
+
+// text
+$c-main-color: #303133;
+$c-content-color: #606266;
+$c-tips-color: #909399;
+$c-light-color: #c0c4cc;
+
+// background
+$c-bg-color: #f3f4f6;
+/* 背景颜色 */
+$c-bg-color-grey: #f8f8f8;
+$c-bg-color-hover: #f1f1f1; //点击状态颜色
+$c-bg-color-mask: rgba(0, 0, 0, 0.4); //遮罩颜色
+
+// border
+$c-border-color: #e4e7ed;
+
+/* 水平间距 */
+$c-spacing-row-sm: 10px;
+$c-spacing-row-base: 20rpx;
+$c-spacing-row-lg: 30rpx;
+
+/* 垂直间距 */
+$c-spacing-col-sm: 8rpx;
+$c-spacing-col-base: 16rpx;
+$c-spacing-col-lg: 24rpx;
