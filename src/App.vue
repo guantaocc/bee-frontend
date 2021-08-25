@@ -8,6 +8,6 @@
 #app {
   width: 100%;
   height: 100vh;
-  background-color: $c-bg-color-grey;
+  background-color: #fff;
 }
 </style>
