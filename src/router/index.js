@@ -5,7 +5,7 @@ import Layout from '@/Layouts/index'
 
 Vue.use(VueRouter)
 
-const constantRoutes = [
+export const constantRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -14,26 +14,25 @@ const constantRoutes = [
   {
     path: '/',
     name: 'home',
-    redirect: '/dashboard',
     component: Layout,
     // 布局的子组件
-    children: [],
   },
-]
-
-const asyncRoutes = [
-  // 一定要最终添加404捕获
   {
     path: '*',
     redirect: '/404',
   },
 ]
 
+export const asyncRoutes = [
+  // 一定要最终添加404捕获
+  
+]
+
 const router = new VueRouter({
   mode: 'hash',
   base: '/',
   scrollBehavior: () => ({ y: 0 }),
-  constantRoutes,
+  routes: constantRoutes,
 })
 
 const resetRouter = () => {
@@ -42,8 +41,8 @@ const resetRouter = () => {
 }
 
 // catch console中的错误信息
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err)
 }
 

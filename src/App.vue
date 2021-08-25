@@ -5,4 +5,9 @@
 </template>
 
 <style lang="scss">
+#app {
+  width: 100%;
+  height: 100vh;
+  background-color: $c-bg-color-grey;
+}
 </style>

@@ -2,11 +2,11 @@ import { Message } from 'element-ui'
 
 import { asyncRoutes, constantRoutes } from '@/router'
 import { filterAsyncRoutes } from '@/utils/handleRoute'
-import { login } from '@/api/user'
-import { getRoles } from '@/api/roles'
+import { login, getRoles } from '@/api/user'
+import { getAccessToken, removeAccessToken, setAccessToken } from '../../utils/accessToken'
 
 const state = () => ({
-  token: null, // access-token
+  token: getAccessToken(), // access-token
   roles: [],
   routes: [],
 })
@@ -20,9 +20,11 @@ const getters = {
 const mutations = {
   setToken(state, token) {
     state.token = token
+    setAccessToken(token)
   },
   resetToken(state) {
     state.token = null
+    removeAccessToken()
   },
   setRoles(state, roles) {
     state.roles = roles
@@ -39,7 +41,7 @@ const mutations = {
 const actions = {
   async login({ commit }, userInfo) {
     const data = await login(userInfo)
-    const accessToken = data.token
+    const accessToken = data.res.token
     if (accessToken) {
       commit('setToken', accessToken)
     } else {
@@ -65,4 +67,4 @@ const actions = {
   },
 }
 
-export default { state, mutations, actions, getters, namespace: true }
+export default { state, mutations, actions, getters, namespaced: true }

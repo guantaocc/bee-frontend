@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import { Message } from 'element-ui'
 
-import { settings } from '@/config/settings'
+import settings  from '@/config/settings'
 
 import qs from 'qs'
 
@@ -44,8 +44,8 @@ instance.interceptors.request.use(
   (config) => {
     // 过滤登录相关token
     if (config.url.indexOf('login') == -1) {
-      if (store.state.token) {
-        config.headers['Authorization'] = 'Token ' + store.state.token
+      if (store.state.user.userToken) {
+        config.headers['Authorization'] = 'Token ' + store.state.user.userToken
       }
     }
     // x-www-form-urlencoded

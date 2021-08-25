@@ -2,10 +2,10 @@ import request from '@/utils/request'
 
 export const login = (data) => {
   return request({
-    url: '/api/admin/login',
+    url: '/api/login',
     method: 'post',
     headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
     },
     data,
   })
@@ -19,4 +19,9 @@ export const getRoles = (data) => {
   })
 }
 
-export const logout = () => {}
+export const logout = () => {
+  return request({
+    url: '/api/logout',
+    method: 'post',
+  })
+}
